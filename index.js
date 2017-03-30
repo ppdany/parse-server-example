@@ -17,7 +17,7 @@ var api = new ParseServer({
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: 'uJg0EQN75V7YZnQXJ7knEIe0r19uN0cDOHRsjsS3',
   masterKey: 'QvHLheflbQVNYH4dv3pijEkUs2WC6De2j3IHmHBO', //Add your master key here. Keep it secret!
-  //serverURL: 'http://foodstamp.herokuapp.com/parse', //http://localhost:1337/parse',  // Don't forget to change to https if needed
+  serverURL: 'http://foodstamp.herokuapp.com/parse', //http://localhost:1337/parse',  // Don't forget to change to https if needed
   clientKey: 'm8lHSnd5L5ZE9AsHoU2Pf02qguCpLASoNMZeKsQW', // added to test
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
