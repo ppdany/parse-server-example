@@ -11,6 +11,20 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+
+var api = new ParseServer({
+  databaseURI: databaseUri || 'mongodb://heroku_7vlfbx32:qqg1rhs6dr16tvm9564kbagkau@ds133249.mlab.com:33249/heroku_7vlfbx32', //'mongodb://localhost:27017/dev',
+  cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
+  appId: 'uJg0EQN75V7YZnQXJ7knEIe0r19uN0cDOHRsjsS3',
+  masterKey: 'QvHLheflbQVNYH4dv3pijEkUs2WC6De2j3IHmHBO', //Add your master key here. Keep it secret!
+  //serverURL: 'http://foodstamp.herokuapp.com/parse', //http://localhost:1337/parse',  // Don't forget to change to https if needed
+  clientKey: 'm8lHSnd5L5ZE9AsHoU2Pf02qguCpLASoNMZeKsQW', // added to test
+  liveQuery: {
+    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+  }
+});
+
+
 /*
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://heroku_7vlfbx32:qqg1rhs6dr16tvm9564kbagkau@ds133249.mlab.com:33249/heroku_7vlfbx32', //'mongodb://localhost:27017/dev',
@@ -22,19 +36,7 @@ var api = new ParseServer({
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
-});
-*/
-var api = new ParseServer({
-  databaseURI: databaseUri || 'mongodb://heroku_7vlfbx32:qqg1rhs6dr16tvm9564kbagkau@ds133249.mlab.com:33249/heroku_7vlfbx32', //'mongodb://localhost:27017/dev',
-  cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'uJg0EQN75V7YZnQXJ7knEIe0r19uN0cDOHRsjsS3',
-  masterKey: process.env.MASTER_KEY || 'QvHLheflbQVNYH4dv3pijEkUs2WC6De2j3IHmHBO', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://foodstamp.herokuapp.com/parse', //http://localhost:1337/parse',  // Don't forget to change to https if needed
-  clientKey: process.env.clientKey || 'm8lHSnd5L5ZE9AsHoU2Pf02qguCpLASoNMZeKsQW', // added to test
-  liveQuery: {
-    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
-  }
-});
+}); */
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
