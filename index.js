@@ -11,6 +11,7 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+var GCSAdapter = require('parse-server-gcs-adapter');
 
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://heroku_7vlfbx32:qqg1rhs6dr16tvm9564kbagkau@ds133249.mlab.com:33249/heroku_7vlfbx32', //'mongodb://localhost:27017/dev',
@@ -21,9 +22,14 @@ var api = new ParseServer({
   clientKey: 'm8lHSnd5L5ZE9AsHoU2Pf02qguCpLASoNMZeKsQW', // added to test
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
-  }
+  },
+  filesAdapter: new GCSAdapter(
+    "regal-cider-94904", //"GCP_PROJECT_ID",
+    "Foodstamp-4d63d8262826.json", //"GCP_KEYFILE_PATH",
+    "regal-cider-94904.appspot.com", //"GCS_BUCKET",
+    {directAccess: true}
+  )
 });
-
 
 /*
 var api = new ParseServer({
